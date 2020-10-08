@@ -1,2 +1,5 @@
-kz\parser\etml\utils\ReflectHelper.class
+kz\parser\etml\EtmlParseException.class
+kz\parser\etml\marker\EtmlObject.class
+kz\parser\etml\marker\EtmlElement.class
+kz\parser\etml\validator\EtmlValidator.class
 kz\parser\etml\Etml.class

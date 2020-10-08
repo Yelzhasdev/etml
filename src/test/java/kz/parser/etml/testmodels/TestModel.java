@@ -1,7 +1,10 @@
 package kz.parser.etml.testmodels;
 
+import kz.parser.etml.marker.EtmlObject;
+
 import java.util.List;
 
+@EtmlObject
 public class TestModel {
 
     private String name;
