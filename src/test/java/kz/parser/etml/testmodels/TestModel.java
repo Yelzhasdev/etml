@@ -11,7 +11,7 @@ public class TestModel{
     @EtmlElement(selector = "head > title")
     private String name;
 
-//    @EtmlElement(selector = "Test")
+    @EtmlElement(selector = "body > h1")
     private int age;
 
 //    @EtmlElement(selector = "Test")

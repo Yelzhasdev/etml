@@ -25,12 +25,6 @@ import org.jsoup.nodes.Element;
 
 public final class SelectorValueGenerator {
 
-    private static Document document;
-
-    public SelectorValueGenerator(Document document) {
-        this.document = document;
-    }
-
     public static boolean isPrimitiveOrString(Class<?> type) {
         return type.isAssignableFrom(String.class)
                 || type.isAssignableFrom(Integer.TYPE)
@@ -41,50 +35,37 @@ public final class SelectorValueGenerator {
                 || type.isAssignableFrom(Short.TYPE);
     }
 
-    public static <T> T getValue(Class<T> type, String selector) throws EtmlParseException {
+    public static <T> T getValue(Class<T> type, String selector,Document document) throws EtmlParseException {
         T valueToReturn = null;
         try {
             Element element = document.select(selector).first();
             String valueOfNode = element.text();
             if (type.isAssignableFrom(String.class)) {
                 valueToReturn = (T) valueOfNode;
-            }
-            if (type.isAssignableFrom(Integer.TYPE)) {
+            } else if (type.isAssignableFrom(Integer.TYPE)) {
                 valueToReturn = (T) Integer.valueOf(valueOfNode);
-            }
-            if (type.isAssignableFrom(Float.TYPE)) {
+            } else if (type.isAssignableFrom(Float.TYPE)) {
                 valueToReturn = (T) Float.valueOf(valueOfNode);
-            }
-            if (type.isAssignableFrom(Double.TYPE)) {
+            } else if (type.isAssignableFrom(Double.TYPE)) {
                 valueToReturn = (T) Double.valueOf(valueOfNode);
-            }
-            if (type.isAssignableFrom(Long.TYPE)) {
+            } else if (type.isAssignableFrom(Long.TYPE)) {
                 valueToReturn = (T) Long.valueOf(valueOfNode);
-            }
-            if (type.isAssignableFrom(Boolean.TYPE)) {
+            } else if (type.isAssignableFrom(Boolean.TYPE)) {
                 if ("true".equalsIgnoreCase(valueOfNode) || "false".equalsIgnoreCase(valueOfNode)) {
                     valueToReturn = (T) Boolean.valueOf(valueOfNode);
                 } else {
                     throw new EtmlParseException("Boolean must be either \"true\" or \"false\"");
                 }
-            }
-            if (type.isAssignableFrom(Short.TYPE)) {
+            } else if (type.isAssignableFrom(Short.TYPE)) {
                 valueToReturn = (T) Short.valueOf(valueOfNode);
             }
         } catch (NumberFormatException e) {
             throw new EtmlParseException(e);
+        } catch (NullPointerException e) {
+            throw new EtmlParseException(e);
         }
-
+        System.out.println("Value is: " + valueToReturn);
         return valueToReturn;
     }
-
-//    public static <T> List<T> getValue(List<T> type, String xPathExpr) throws EtmlParseException {
-//        try {
-//            NodeList nodeList = (NodeList) xPath.compile(xPathExpr).evaluate(document, XPathConstants.NODESET);
-//
-//        } catch (XPathExpressionException e) {
-//            throw new EtmlParseException(e);
-//        }
-//    }
 
 }

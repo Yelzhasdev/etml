@@ -1,3 +1,5 @@
+package kz.parser.etml.reflection;
+
 /*
  *
  *  * Copyright (C) 2020 Suleimenov Yelzhas.
@@ -16,23 +18,15 @@
  *
  */
 
-package kz.parser.etml;
+public final class GenericType<T> {
 
-import kz.parser.etml.reflection.EtmlParser;
-import org.jsoup.nodes.Document;
+    private final Class<T> type;
 
-public final class Etml {
-
-    public <T> T fromHtml(Document document, Class<T> classOf) throws EtmlParseException {
-//        if (docHtml == null) {
-//            throw new EtmlParseException("Document is null.");
-//        }
-        if (classOf == null) {
-            throw new EtmlParseException("Object can't be null.");
-        }
-        EtmlParser<T> parser = new EtmlParser<>();
-        T target = parser.parse(classOf, document);
-        return target;
+    public GenericType(Class<T> type) {
+        this.type = type;
     }
 
+    public Class<T> getMyType() {
+        return this.type;
+    }
 }

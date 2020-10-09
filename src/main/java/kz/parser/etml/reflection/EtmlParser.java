@@ -27,29 +27,26 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Collection;
 
 public class EtmlParser<T> extends EtmlBaseParser<T> {
 
-    private Document document;
-    private SelectorValueGenerator selectorValueGenerator;
-
-    public EtmlParser(Document document) {
-        this.document = document;
-        selectorValueGenerator = new SelectorValueGenerator(document);
-    }
-
     @Override
-    public T parse(Class<T> classOf) throws EtmlParseException {
+    public T parse(Class<T> classOf, Document document) throws EtmlParseException {
         EtmlValidator<T> validator = new EtmlValidator<>(classOf);
         validator.validate();
         T target;
         try {
             target = classOf.newInstance();
+            if (Collection.class.isAssignableFrom(classOf)) {
+                System.out.println("Found a collection");
+                Type collectionType = ((ParameterizedType) target).getActualTypeArguments()[0];
+            }
             for (Field field : target.getClass().getDeclaredFields()) {
                 System.out.println("Field: " + field.getName() + " - ");
-                for (Annotation fieldAnnon : field.getDeclaredAnnotations()) {
-                    if (fieldAnnon instanceof EtmlElement) {
-                        EtmlElement  etmlFieldAnnon = (EtmlElement) fieldAnnon;
+                for (Annotation fieldAn : field.getDeclaredAnnotations()) {
+                    if (fieldAn instanceof EtmlElement) {
+                        EtmlElement  etmlFieldAnnon = (EtmlElement) fieldAn;
                         if (etmlFieldAnnon.selector().isEmpty()) {
                             throw new EtmlParseException("Field xPath must not be empty.");
                         }
@@ -65,11 +62,12 @@ public class EtmlParser<T> extends EtmlBaseParser<T> {
 //                                    System.out.println("It's STRING!!!");
 //                                    setField(target, "ModelName", field);
 //                                } else
-                                setField(target,selectorValueGenerator.getValue(field.getType(),etmlFieldAnnon.selector()), field);
-                                if (field.getType().isAssignableFrom(Integer.TYPE)) {
-                                    System.out.println("It's INT!!!");
-                                    setField(target, 33, field);
-                                }
+                                Object value = SelectorValueGenerator.getValue(field.getType(),etmlFieldAnnon.selector(), document);
+                                setField(target, value, field);
+//                                if (field.getType().isAssignableFrom(Integer.TYPE)) {
+//                                    System.out.println("It's INT!!!");
+//                                    setField(target, 33, field);
+//                                }
                             }
                         }
                     }

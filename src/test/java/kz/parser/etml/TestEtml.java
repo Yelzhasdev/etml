@@ -1,5 +1,6 @@
 package kz.parser.etml;
 
+import kz.parser.etml.reflection.GenericType;
 import kz.parser.etml.testmodels.TestModel;
 import kz.parser.etml.testmodels.TestModelWithoutBase;
 import org.jsoup.Jsoup;
@@ -7,6 +8,9 @@ import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestEtml {
 
@@ -32,7 +36,7 @@ public class TestEtml {
                 "</head>\n" +
                 "<!-- The information between the BODY and /BODY tags is displayed.-->\n" +
                 "<body>\n" +
-                "<h1>Enter the main heading, usually the same as the title.</h1>\n" +
+                "<h1>17</h1>\n" +
                 "<p>Be <b>bold</b> in stating your key points. Put them in a list: </p>\n" +
                 "<ul>\n" +
                 "<li>The first item in your list</li>\n" +

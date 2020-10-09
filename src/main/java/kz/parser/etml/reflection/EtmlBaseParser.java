@@ -18,20 +18,21 @@
 
 package kz.parser.etml.reflection;
 
+import kz.parser.etml.EtmlParseException;
+import org.jsoup.nodes.Document;
+
 import java.lang.reflect.Field;
 
 abstract class EtmlBaseParser<T> {
 
-    abstract public T parse(Class<T> target);
+    abstract public T parse(Class<T> target, Document document);
 
-    static void setField(Object obj, Object value, Field field) {
+    static void setField(Object obj, Object value, Field field) throws EtmlParseException {
         try {
             field.setAccessible(true);
             field.set(obj, value);
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            throw new EtmlParseException(e);
         }
     }
-
-
 }

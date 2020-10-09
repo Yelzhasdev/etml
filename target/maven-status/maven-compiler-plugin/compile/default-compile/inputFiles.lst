@@ -1,7 +1,8 @@
-C:\etml\src\main\java\kz\parser\etml\Etml.java
-C:\etml\src\main\java\kz\parser\etml\reflection\EtmlParser.java
-C:\etml\src\main\java\kz\parser\etml\marker\EtmlElement.java
-C:\etml\src\main\java\kz\parser\etml\validator\EtmlValidator.java
-C:\etml\src\main\java\kz\parser\etml\marker\EtmlObject.java
-C:\etml\src\main\java\kz\parser\etml\EtmlParseException.java
-C:\etml\src\main\java\kz\parser\etml\reflection\EtmlBaseParser.java
+F:\OpenSource\etml\src\main\java\kz\parser\etml\reflection\EtmlBaseParser.java
+F:\OpenSource\etml\src\main\java\kz\parser\etml\reflection\SelectorValueGenerator.java
+F:\OpenSource\etml\src\main\java\kz\parser\etml\EtmlParseException.java
+F:\OpenSource\etml\src\main\java\kz\parser\etml\validator\EtmlValidator.java
+F:\OpenSource\etml\src\main\java\kz\parser\etml\Etml.java
+F:\OpenSource\etml\src\main\java\kz\parser\etml\marker\EtmlObject.java
+F:\OpenSource\etml\src\main\java\kz\parser\etml\reflection\EtmlParser.java
+F:\OpenSource\etml\src\main\java\kz\parser\etml\marker\EtmlElement.java
