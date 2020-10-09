@@ -16,17 +16,22 @@
  *
  */
 
-package kz.parser.etml.marker;
+package kz.parser.etml.reflection;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.reflect.Field;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface EtmlElement {
+abstract class EtmlBaseParser<T> {
 
-    public String selector() default "";
+    abstract public T parse(Class<T> target);
+
+    static void setField(Object obj, Object value, Field field) {
+        try {
+            field.setAccessible(true);
+            field.set(obj, value);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

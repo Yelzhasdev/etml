@@ -36,13 +36,13 @@ public final class EtmlValidator<T> {
             throw new EtmlParseException("Target class can not be null.");
         }
 
-        if (!containsAnnotation(target.getAnnotations(), EtmlObject.class)) {
+        if (!containsAnnotation(EtmlObject.class)) {
             throw new EtmlParseException("Target class should be annotated with @EtmlObject.");
         }
 
     }
 
-    private boolean containsAnnotation(Annotation[] annotations, Class<?> targetAnnotation) {
+    private boolean containsAnnotation(Class<?> targetAnnotation) {
         Annotation[] classAnnotations = target.getAnnotations();
         for (Annotation annotation : classAnnotations) {
             if (targetAnnotation.isInstance(annotation)) {

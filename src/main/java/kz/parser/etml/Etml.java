@@ -18,12 +18,8 @@
 
 package kz.parser.etml;
 
-import kz.parser.etml.validator.EtmlValidator;
-import org.w3c.dom.Document;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import kz.parser.etml.reflection.EtmlParser;
+import org.jsoup.nodes.Document;
 
 public final class Etml {
 
@@ -34,45 +30,9 @@ public final class Etml {
         if (classOf == null) {
             throw new EtmlParseException("Object can't be null.");
         }
-        EtmlValidator<T> validator = new EtmlValidator<>(classOf);
-        validator.validate();
-        T target = null;
-        try {
-            target = classOf.newInstance();
-
-            for (Field field : target.getClass().getDeclaredFields()) {
-                System.out.println("Field: " + field.getName() + " - ");
-                Type type = field.getGenericType();
-                if (type instanceof ParameterizedType) {
-                    ParameterizedType pType = (ParameterizedType) type;
-                    System.out.print("Raw type: " + pType.getRawType() + " - ");
-                    System.out.println("Type args: " + pType.getActualTypeArguments()[0]);
-                } else {
-                    System.out.println("Type: " + field.getType());
-                    if (field.getType().isAssignableFrom(String.class)) {
-                        System.out.println("It's STRING!!!");
-                        setField(target, "ModelName", field);
-                    } else if (field.getType().isAssignableFrom(Integer.TYPE)) {
-                        System.out.println("It's INT!!!");
-                        setField(target, 33, field);
-                    }
-                }
-            }
-        } catch (InstantiationException e) {
-            throw new EtmlParseException(e);
-        } catch (IllegalAccessException e) {
-            throw new EtmlParseException(e);
-        }
+        EtmlParser<T> parser = new EtmlParser<>(docHtml);
+        T target = parser.parse(classOf);
         return target;
-    }
-
-    private static void setField(Object obj, Object value, Field field) {
-        try {
-            field.setAccessible(true);
-            field.set(obj, value);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
     }
 
 }

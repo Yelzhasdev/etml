@@ -1,17 +1,21 @@
 package kz.parser.etml.testmodels;
 
+import kz.parser.etml.marker.EtmlElement;
 import kz.parser.etml.marker.EtmlObject;
 
 import java.util.List;
 
-@EtmlObject
-public class TestModel {
+@EtmlObject(selector = "helloWorld")
+public class TestModel{
 
+    @EtmlElement(selector = "head > title")
     private String name;
 
+//    @EtmlElement(selector = "Test")
     private int age;
 
-    private List<TestModel> attributes;
+//    @EtmlElement(selector = "Test")
+    private List<TestModelWithoutBase> attributes;
 
     public String getName() {
         return name;
@@ -29,11 +33,11 @@ public class TestModel {
         this.age = age;
     }
 
-    public List<TestModel> getAttributes() {
+    public List<TestModelWithoutBase> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(List<TestModel> attributes) {
+    public void setAttributes(List<TestModelWithoutBase> attributes) {
         this.attributes = attributes;
     }
 }
