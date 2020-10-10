@@ -19,6 +19,7 @@
 package kz.parser.etml;
 
 import kz.parser.etml.reflection.EtmlParser;
+import kz.parser.etml.validator.EtmlValidator;
 import org.jsoup.nodes.Document;
 
 public final class Etml {
@@ -27,6 +28,8 @@ public final class Etml {
 //        if (docHtml == null) {
 //            throw new EtmlParseException("Document is null.");
 //        }
+        EtmlValidator<T> validator = new EtmlValidator<>(classOf);
+        validator.validate();
         if (classOf == null) {
             throw new EtmlParseException("Object can't be null.");
         }

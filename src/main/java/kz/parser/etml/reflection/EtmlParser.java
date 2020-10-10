@@ -20,58 +20,24 @@ package kz.parser.etml.reflection;
 
 import kz.parser.etml.EtmlParseException;
 import kz.parser.etml.marker.EtmlElement;
-import kz.parser.etml.validator.EtmlValidator;
 import org.jsoup.nodes.Document;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.Collection;
+import java.util.List;
 
 public class EtmlParser<T> extends EtmlBaseParser<T> {
 
     @Override
     public T parse(Class<T> classOf, Document document) throws EtmlParseException {
-        EtmlValidator<T> validator = new EtmlValidator<>(classOf);
-        validator.validate();
         T target;
         try {
             target = classOf.newInstance();
-            if (Collection.class.isAssignableFrom(classOf)) {
-                System.out.println("Found a collection");
-                Type collectionType = ((ParameterizedType) target).getActualTypeArguments()[0];
-            }
+            System.out.println("Clazz: " + target.getClass().getName() + " - ");
             for (Field field : target.getClass().getDeclaredFields()) {
-                System.out.println("Field: " + field.getName() + " - ");
-                for (Annotation fieldAn : field.getDeclaredAnnotations()) {
-                    if (fieldAn instanceof EtmlElement) {
-                        EtmlElement  etmlFieldAnnon = (EtmlElement) fieldAn;
-                        if (etmlFieldAnnon.selector().isEmpty()) {
-                            throw new EtmlParseException("Field xPath must not be empty.");
-                        }
-                        Type type = field.getGenericType();
-                        if (type instanceof ParameterizedType) {
-                            ParameterizedType pType = (ParameterizedType) type;
-                            System.out.print("Raw type: " + pType.getRawType() + " - ");
-                            System.out.println("Type args: " + pType.getActualTypeArguments()[0]);
-                        } else {
-                            System.out.println("Type: " + field.getType());
-                            if (SelectorValueGenerator.isPrimitiveOrString(field.getType())) {
-//                                if (field.getType().isAssignableFrom(String.class)) {
-//                                    System.out.println("It's STRING!!!");
-//                                    setField(target, "ModelName", field);
-//                                } else
-                                Object value = SelectorValueGenerator.getValue(field.getType(),etmlFieldAnnon.selector(), document);
-                                setField(target, value, field);
-//                                if (field.getType().isAssignableFrom(Integer.TYPE)) {
-//                                    System.out.println("It's INT!!!");
-//                                    setField(target, 33, field);
-//                                }
-                            }
-                        }
-                    }
-                }
+                fieldProcessor(field, target, document);
             }
         } catch (InstantiationException e) {
             throw new EtmlParseException(e);
@@ -81,4 +47,34 @@ public class EtmlParser<T> extends EtmlBaseParser<T> {
         return target;
     }
 
+    private void fieldProcessor(Field fieldToProcess, T target, Document document) {
+        System.out.println("Field: " + fieldToProcess.getName() + " - ");
+        for (Annotation fieldAn : fieldToProcess.getDeclaredAnnotations()) {
+            if (fieldAn instanceof EtmlElement) {
+                EtmlElement etmlFieldAnnon = (EtmlElement) fieldAn;
+                if (etmlFieldAnnon.selector().isEmpty()) {
+                    throw new EtmlParseException("Field selector must not be empty.");
+                }
+                Type type = fieldToProcess.getGenericType();
+                if (type instanceof ParameterizedType) {
+                    ParameterizedType pType = (ParameterizedType) type;
+                    if (fieldToProcess.getType().isAssignableFrom(List.class) ) {
+                        List<?> targetList = SelectorValueGenerator.getValues((Class<T>) pType.getActualTypeArguments()[0],etmlFieldAnnon.selector(),document);
+                        setField(target, targetList, fieldToProcess);
+                        System.out.print("Raw type: " + pType.getRawType() + " - ");
+                        System.out.println("Type args: " + pType.getActualTypeArguments()[0]);
+                        System.out.println("List args: " + targetList);
+                    }
+                } else {
+                    System.out.println("Type: " + fieldToProcess.getType());
+                    System.out.println("Field selector: " + etmlFieldAnnon.selector());
+
+                    if (SelectorValueGenerator.isPrimitiveOrString(fieldToProcess.getType())) {
+                        Object value = SelectorValueGenerator.getValue(fieldToProcess.getType(), etmlFieldAnnon.selector(), document);
+                        setField(target, value, fieldToProcess);
+                    }
+                }
+            }
+        }
+    }
 }

@@ -1,6 +1,5 @@
 package kz.parser.etml;
 
-import kz.parser.etml.reflection.GenericType;
 import kz.parser.etml.testmodels.TestModel;
 import kz.parser.etml.testmodels.TestModelWithoutBase;
 import org.jsoup.Jsoup;
@@ -8,9 +7,6 @@ import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class TestEtml {
 
@@ -40,7 +36,11 @@ public class TestEtml {
                 "<p>Be <b>bold</b> in stating your key points. Put them in a list: </p>\n" +
                 "<ul>\n" +
                 "<li>The first item in your list</li>\n" +
+                "<h1>22</h1>\n" +
+                "</ul>\n" +
+                "<ul>\n" +
                 "<li>The second item; <i>italicize</i> key words</li>\n" +
+                "<h1>23</h1>\n" +
                 "</ul>\n" +
                 "<p>Improve your image by including an image. </p>\n" +
                 "<p><img src=\"http://www.mygifs.com/CoverImage.gif\" alt=\"A Great HTML Resource\"></p>\n" +
@@ -57,6 +57,8 @@ public class TestEtml {
 
         System.out.println("Name is: " +  model.getName());
         System.out.println("Age is: " +  model.getAge());
+        System.out.println("Text is: " +  model.getAttributes().get(1).getNumb());
+
     }
 
 }

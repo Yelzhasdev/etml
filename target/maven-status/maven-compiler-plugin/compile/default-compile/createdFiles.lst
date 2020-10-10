@@ -1,6 +1,5 @@
 kz\parser\etml\EtmlParseException.class
 kz\parser\etml\marker\EtmlObject.class
 kz\parser\etml\Etml.class
-kz\parser\etml\reflection\GenericType.class
 kz\parser\etml\marker\EtmlElement.class
 kz\parser\etml\validator\EtmlValidator.class

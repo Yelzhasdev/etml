@@ -5,7 +5,7 @@ import kz.parser.etml.marker.EtmlObject;
 
 import java.util.List;
 
-@EtmlObject(selector = "helloWorld")
+@EtmlObject
 public class TestModel{
 
     @EtmlElement(selector = "head > title")
@@ -14,8 +14,15 @@ public class TestModel{
     @EtmlElement(selector = "body > h1")
     private int age;
 
-//    @EtmlElement(selector = "Test")
+    @EtmlElement(selector = "body > ul")
     private List<TestModelWithoutBase> attributes;
+
+    @EtmlElement(selector = "body > p")
+    private List<String> elements;
+
+    public List<String> getElements() {
+        return elements;
+    }
 
     public String getName() {
         return name;

@@ -19,8 +19,13 @@
 package kz.parser.etml.reflection;
 
 import kz.parser.etml.EtmlParseException;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public final class SelectorValueGenerator {
@@ -35,36 +40,65 @@ public final class SelectorValueGenerator {
                 || type.isAssignableFrom(Short.TYPE);
     }
 
-    public static <T> T getValue(Class<T> type, String selector,Document document) throws EtmlParseException {
-        T valueToReturn = null;
+    public static <T> List<T> getValues(Class<T> type, String selector, Document document) throws EtmlParseException {
+        List<T> listToReturn = new ArrayList<>();
         try {
-            Element element = document.select(selector).first();
-            String valueOfNode = element.text();
-            if (type.isAssignableFrom(String.class)) {
-                valueToReturn = (T) valueOfNode;
-            } else if (type.isAssignableFrom(Integer.TYPE)) {
-                valueToReturn = (T) Integer.valueOf(valueOfNode);
-            } else if (type.isAssignableFrom(Float.TYPE)) {
-                valueToReturn = (T) Float.valueOf(valueOfNode);
-            } else if (type.isAssignableFrom(Double.TYPE)) {
-                valueToReturn = (T) Double.valueOf(valueOfNode);
-            } else if (type.isAssignableFrom(Long.TYPE)) {
-                valueToReturn = (T) Long.valueOf(valueOfNode);
-            } else if (type.isAssignableFrom(Boolean.TYPE)) {
-                if ("true".equalsIgnoreCase(valueOfNode) || "false".equalsIgnoreCase(valueOfNode)) {
-                    valueToReturn = (T) Boolean.valueOf(valueOfNode);
+            Elements elements = document.select(selector);
+            elements.forEach(element -> {
+                System.out.println("Selector is: " + element.html());
+                if (isPrimitiveOrString(type)) {
+                    listToReturn.add(extractValue(element, type));
                 } else {
-                    throw new EtmlParseException("Boolean must be either \"true\" or \"false\"");
+                    EtmlParser<T> parser = new EtmlParser<>();
+                    listToReturn.add(parser.parse(type, Jsoup.parse(element.html())));
                 }
-            } else if (type.isAssignableFrom(Short.TYPE)) {
-                valueToReturn = (T) Short.valueOf(valueOfNode);
-            }
+            });
         } catch (NumberFormatException e) {
             throw new EtmlParseException(e);
         } catch (NullPointerException e) {
             throw new EtmlParseException(e);
         }
-        System.out.println("Value is: " + valueToReturn);
+        return listToReturn;
+    }
+
+    public static <T> T extractValue(Element element, Class<T> type) {
+        T valueToReturn = null;
+        if (element == null) {
+            throw new EtmlParseException("Element is empty! Check selector.");
+        }
+        String valueOfNode = element.text();
+        if (type.isAssignableFrom(String.class)) {
+            valueToReturn = (T) valueOfNode;
+        } else if (type.isAssignableFrom(Integer.TYPE)) {
+            valueToReturn = (T) Integer.valueOf(valueOfNode);
+        } else if (type.isAssignableFrom(Float.TYPE)) {
+            valueToReturn = (T) Float.valueOf(valueOfNode);
+        } else if (type.isAssignableFrom(Double.TYPE)) {
+            valueToReturn = (T) Double.valueOf(valueOfNode);
+        } else if (type.isAssignableFrom(Long.TYPE)) {
+            valueToReturn = (T) Long.valueOf(valueOfNode);
+        } else if (type.isAssignableFrom(Boolean.TYPE)) {
+            if ("true".equalsIgnoreCase(valueOfNode) || "false".equalsIgnoreCase(valueOfNode)) {
+                valueToReturn = (T) Boolean.valueOf(valueOfNode);
+            } else {
+                throw new EtmlParseException("Boolean must be either \"true\" or \"false\"");
+            }
+        } else if (type.isAssignableFrom(Short.TYPE)) {
+            valueToReturn = (T) Short.valueOf(valueOfNode);
+        }
+        return valueToReturn;
+    }
+
+    public static <T> T getValue(Class<T> type, String selector, Document document) throws EtmlParseException {
+        T valueToReturn = null;
+        try {
+            Element element = document.select(selector).first();
+            valueToReturn = extractValue(element, type);
+        } catch (NumberFormatException e) {
+            throw new EtmlParseException(e);
+        } catch (NullPointerException e) {
+            throw new EtmlParseException(e);
+        }
         return valueToReturn;
     }
 
