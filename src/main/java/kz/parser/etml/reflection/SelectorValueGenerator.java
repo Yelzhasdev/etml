@@ -30,14 +30,14 @@ import java.util.List;
 
 public final class SelectorValueGenerator {
 
-    public static boolean isPrimitiveOrString(Class<?> type) {
+    public static boolean isPrimitiveOrWrapper(Class<?> type) {
         return type.isAssignableFrom(String.class)
-                || type.isAssignableFrom(Integer.TYPE)
-                || type.isAssignableFrom(Float.TYPE)
-                || type.isAssignableFrom(Double.TYPE)
-                || type.isAssignableFrom(Long.TYPE)
-                || type.isAssignableFrom(Boolean.TYPE)
-                || type.isAssignableFrom(Short.TYPE);
+                || type.isAssignableFrom(Integer.TYPE) || type.isAssignableFrom(Integer.class)
+                || type.isAssignableFrom(Float.TYPE) || type.isAssignableFrom(Float.class)
+                || type.isAssignableFrom(Double.TYPE) || type.isAssignableFrom(Double.class)
+                || type.isAssignableFrom(Long.TYPE) || type.isAssignableFrom(Long.class)
+                || type.isAssignableFrom(Boolean.TYPE) || type.isAssignableFrom(Boolean.class)
+                || type.isAssignableFrom(Short.TYPE) || type.isAssignableFrom(Short.class);
     }
 
     public static <T> List<T> getValues(Class<T> type, String selector, Document document) throws EtmlParseException {
@@ -45,8 +45,7 @@ public final class SelectorValueGenerator {
         try {
             Elements elements = document.select(selector);
             elements.forEach(element -> {
-                System.out.println("Selector is: " + element.html());
-                if (isPrimitiveOrString(type)) {
+                if (isPrimitiveOrWrapper(type)) {
                     listToReturn.add(extractValue(element, type));
                 } else {
                     EtmlParser<T> parser = new EtmlParser<>();
@@ -64,33 +63,36 @@ public final class SelectorValueGenerator {
     public static <T> T extractValue(Element element, Class<T> type) {
         T valueToReturn = null;
         if (element == null) {
-            throw new EtmlParseException("Element is empty! Check selector.");
+            throw new EtmlParseException("Element is empty! Selector is wrong or page is not valid.");
         }
         String valueOfNode = element.text();
         if (type.isAssignableFrom(String.class)) {
             valueToReturn = (T) valueOfNode;
-        } else if (type.isAssignableFrom(Integer.TYPE)) {
+        } else if (type.isAssignableFrom(Integer.TYPE) || type.isAssignableFrom(Integer.class)) {
             valueToReturn = (T) Integer.valueOf(valueOfNode);
-        } else if (type.isAssignableFrom(Float.TYPE)) {
+        } else if (type.isAssignableFrom(Float.TYPE) || type.isAssignableFrom(Float.class)) {
             valueToReturn = (T) Float.valueOf(valueOfNode);
-        } else if (type.isAssignableFrom(Double.TYPE)) {
+        } else if (type.isAssignableFrom(Double.TYPE) || type.isAssignableFrom(Double.class)) {
             valueToReturn = (T) Double.valueOf(valueOfNode);
-        } else if (type.isAssignableFrom(Long.TYPE)) {
+        } else if (type.isAssignableFrom(Long.TYPE) || type.isAssignableFrom(Long.class)) {
             valueToReturn = (T) Long.valueOf(valueOfNode);
-        } else if (type.isAssignableFrom(Boolean.TYPE)) {
+        } else if (type.isAssignableFrom(Boolean.TYPE) || type.isAssignableFrom(Boolean.class)) {
             if ("true".equalsIgnoreCase(valueOfNode) || "false".equalsIgnoreCase(valueOfNode)) {
                 valueToReturn = (T) Boolean.valueOf(valueOfNode);
             } else {
                 throw new EtmlParseException("Boolean must be either \"true\" or \"false\"");
             }
-        } else if (type.isAssignableFrom(Short.TYPE)) {
+        } else if (type.isAssignableFrom(Short.TYPE) || type.isAssignableFrom(Short.class)) {
             valueToReturn = (T) Short.valueOf(valueOfNode);
+        } else {
+            EtmlParser<T> parser = new EtmlParser<>();
+            valueToReturn = parser.parse(type, Jsoup.parse(element.html()));
         }
         return valueToReturn;
     }
 
     public static <T> T getValue(Class<T> type, String selector, Document document) throws EtmlParseException {
-        T valueToReturn = null;
+        T valueToReturn;
         try {
             Element element = document.select(selector).first();
             valueToReturn = extractValue(element, type);

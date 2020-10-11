@@ -20,14 +20,23 @@ package kz.parser.etml;
 
 import kz.parser.etml.reflection.EtmlParser;
 import kz.parser.etml.validator.EtmlValidator;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 public final class Etml {
 
+    public <T> T fromHtml(String html, Class<T> classOf) throws EtmlParseException {
+        if (html.isEmpty()) {
+            throw new EtmlParseException("HTML string can not be empty.");
+        }
+        T target = fromHtml(Jsoup.parse(html), classOf);
+        return target;
+    }
+
     public <T> T fromHtml(Document document, Class<T> classOf) throws EtmlParseException {
-//        if (docHtml == null) {
-//            throw new EtmlParseException("Document is null.");
-//        }
+        if (document == null) {
+            throw new EtmlParseException("Document is null.");
+        }
         EtmlValidator<T> validator = new EtmlValidator<>(classOf);
         validator.validate();
         if (classOf == null) {

@@ -12,13 +12,27 @@ public class TestModel{
     private String name;
 
     @EtmlElement(selector = "body > h1")
-    private int age;
+    private Long age;
+
+    @EtmlElement(selector = "body > h2")
+    private boolean isHuman;
 
     @EtmlElement(selector = "body > ul")
     private List<TestModelWithoutBase> attributes;
 
     @EtmlElement(selector = "body > p")
     private List<String> elements;
+
+    @EtmlElement(selector = "body")
+    private SubModel subModel;
+
+    public SubModel getSubModel() {
+        return subModel;
+    }
+
+    public boolean isHuman() {
+        return isHuman;
+    }
 
     public List<String> getElements() {
         return elements;
@@ -32,11 +46,11 @@ public class TestModel{
         this.name = name;
     }
 
-    public int getAge() {
+    public Long getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(long age) {
         this.age = age;
     }
 

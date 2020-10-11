@@ -5,7 +5,6 @@ import kz.parser.etml.marker.EtmlElement;
 import java.util.List;
 
 public class TestModelWithoutBase {
-
     @EtmlElement(selector = "li")
     private String test;
 

@@ -35,7 +35,6 @@ public class EtmlParser<T> extends EtmlBaseParser<T> {
         T target;
         try {
             target = classOf.newInstance();
-            System.out.println("Clazz: " + target.getClass().getName() + " - ");
             for (Field field : target.getClass().getDeclaredFields()) {
                 fieldProcessor(field, target, document);
             }
@@ -48,7 +47,6 @@ public class EtmlParser<T> extends EtmlBaseParser<T> {
     }
 
     private void fieldProcessor(Field fieldToProcess, T target, Document document) {
-        System.out.println("Field: " + fieldToProcess.getName() + " - ");
         for (Annotation fieldAn : fieldToProcess.getDeclaredAnnotations()) {
             if (fieldAn instanceof EtmlElement) {
                 EtmlElement etmlFieldAnnon = (EtmlElement) fieldAn;
@@ -58,21 +56,13 @@ public class EtmlParser<T> extends EtmlBaseParser<T> {
                 Type type = fieldToProcess.getGenericType();
                 if (type instanceof ParameterizedType) {
                     ParameterizedType pType = (ParameterizedType) type;
-                    if (fieldToProcess.getType().isAssignableFrom(List.class) ) {
-                        List<?> targetList = SelectorValueGenerator.getValues((Class<T>) pType.getActualTypeArguments()[0],etmlFieldAnnon.selector(),document);
+                    if (fieldToProcess.getType().isAssignableFrom(List.class)) {
+                        List<?> targetList = SelectorValueGenerator.getValues((Class<T>) pType.getActualTypeArguments()[0], etmlFieldAnnon.selector(), document);
                         setField(target, targetList, fieldToProcess);
-                        System.out.print("Raw type: " + pType.getRawType() + " - ");
-                        System.out.println("Type args: " + pType.getActualTypeArguments()[0]);
-                        System.out.println("List args: " + targetList);
                     }
                 } else {
-                    System.out.println("Type: " + fieldToProcess.getType());
-                    System.out.println("Field selector: " + etmlFieldAnnon.selector());
-
-                    if (SelectorValueGenerator.isPrimitiveOrString(fieldToProcess.getType())) {
-                        Object value = SelectorValueGenerator.getValue(fieldToProcess.getType(), etmlFieldAnnon.selector(), document);
-                        setField(target, value, fieldToProcess);
-                    }
+                    Object value = SelectorValueGenerator.getValue(fieldToProcess.getType(), etmlFieldAnnon.selector(), document);
+                    setField(target, value, fieldToProcess);
                 }
             }
         }
