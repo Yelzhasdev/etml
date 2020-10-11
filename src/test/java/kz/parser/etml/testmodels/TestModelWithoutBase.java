@@ -2,6 +2,8 @@ package kz.parser.etml.testmodels;
 
 import kz.parser.etml.marker.EtmlElement;
 
+import java.util.List;
+
 public class TestModelWithoutBase {
 
     @EtmlElement(selector = "li")
@@ -9,6 +11,13 @@ public class TestModelWithoutBase {
 
     @EtmlElement(selector = "h1")
     private int numb;
+
+    @EtmlElement(selector = "ol")
+    private List<String> testText;
+
+    public List<String> getTestText() {
+        return testText;
+    }
 
     public String getTest() {
         return test;

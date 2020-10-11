@@ -37,7 +37,7 @@ public final class EtmlValidator<T> {
         }
 
         if (!containsAnnotation(EtmlObject.class)) {
-            throw new EtmlParseException("Target class should be annotated with @EtmlObject.");
+            throw new EtmlParseException("Main target class should be annotated with @EtmlObject.");
         }
 
     }

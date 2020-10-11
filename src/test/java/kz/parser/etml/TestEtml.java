@@ -37,10 +37,16 @@ public class TestEtml {
                 "<ul>\n" +
                 "<li>The first item in your list</li>\n" +
                 "<h1>22</h1>\n" +
+                "<ol>Test</ol>" +
+                "<ol>Test1</ol>" +
+                "<ol>Test2</ol>" +
                 "</ul>\n" +
                 "<ul>\n" +
                 "<li>The second item; <i>italicize</i> key words</li>\n" +
                 "<h1>23</h1>\n" +
+                "<ol>Test3</ol>" +
+                "<ol>Test4</ol>" +
+                "<ol>Test5</ol>" +
                 "</ul>\n" +
                 "<p>Improve your image by including an image. </p>\n" +
                 "<p><img src=\"http://www.mygifs.com/CoverImage.gif\" alt=\"A Great HTML Resource\"></p>\n" +
