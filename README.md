@@ -35,7 +35,7 @@ public class TestModel{
 }
 ```
 We must annotate target model as @EtmlObject(Submodels can be ignored).
-Also, it's important to annotate target fields with @EtmlField and pass selector.
+Also, it's important to annotate target fields with @EtmlElement and pass selector.
 
 If you have List of SubModels, you can annotate List with selector:
 ```java
