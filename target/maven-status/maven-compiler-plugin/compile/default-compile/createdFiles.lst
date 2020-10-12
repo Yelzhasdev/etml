@@ -1,8 +1,0 @@
-com\github\elzhass\etml\EtmlParseException.class
-com\github\elzhass\etml\Etml.class
-com\github\elzhass\etml\reflection\EtmlParser.class
-com\github\elzhass\etml\validator\EtmlValidator.class
-com\github\elzhass\etml\marker\EtmlElement.class
-com\github\elzhass\etml\marker\EtmlObject.class
-com\github\elzhass\etml\reflection\EtmlBaseParser.class
-com\github\elzhass\etml\reflection\SelectorValueGenerator.class
