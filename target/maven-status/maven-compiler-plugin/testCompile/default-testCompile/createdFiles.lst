@@ -1,3 +1,4 @@
-kz\parser\etml\testmodels\TestModel.class
-kz\parser\etml\TestEtml.class
-kz\parser\etml\testmodels\SubModel.class
+com\github\elzhass\etml\TestEtml.class
+com\github\elzhass\etml\testmodels\TestModelWithoutBase.class
+com\github\elzhass\etml\testmodels\TestModel.class
+com\github\elzhass\etml\testmodels\SubModel.class

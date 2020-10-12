@@ -1,5 +1,8 @@
-kz\parser\etml\EtmlParseException.class
-kz\parser\etml\marker\EtmlObject.class
-kz\parser\etml\Etml.class
-kz\parser\etml\marker\EtmlElement.class
-kz\parser\etml\validator\EtmlValidator.class
+com\github\elzhass\etml\EtmlParseException.class
+com\github\elzhass\etml\Etml.class
+com\github\elzhass\etml\reflection\EtmlParser.class
+com\github\elzhass\etml\validator\EtmlValidator.class
+com\github\elzhass\etml\marker\EtmlElement.class
+com\github\elzhass\etml\marker\EtmlObject.class
+com\github\elzhass\etml\reflection\EtmlBaseParser.class
+com\github\elzhass\etml\reflection\SelectorValueGenerator.class
