@@ -1,3 +1,10 @@
+package com.github.elzhass.etml.marker;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 /*
  *
  *  * Copyright (C) 2020 Suleimenov Yelzhas.
@@ -15,13 +22,6 @@
  *  * limitations under the License.
  *
  */
-
-package kz.parser.etml.marker;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

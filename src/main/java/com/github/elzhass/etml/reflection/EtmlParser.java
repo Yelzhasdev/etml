@@ -1,3 +1,15 @@
+package com.github.elzhass.etml.reflection;
+
+import com.github.elzhass.etml.EtmlParseException;
+import com.github.elzhass.etml.marker.EtmlElement;
+import org.jsoup.nodes.Document;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.List;
+
 /*
  *
  *  * Copyright (C) 2020 Suleimenov Yelzhas.
@@ -15,18 +27,6 @@
  *  * limitations under the License.
  *
  */
-
-package kz.parser.etml.reflection;
-
-import kz.parser.etml.EtmlParseException;
-import kz.parser.etml.marker.EtmlElement;
-import org.jsoup.nodes.Document;
-
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.List;
 
 public class EtmlParser<T> extends EtmlBaseParser<T> {
 

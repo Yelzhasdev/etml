@@ -1,4 +1,6 @@
-package kz.parser.etml.testmodels;
+package com.github.elzhass.etml.testmodels;
+
+import com.github.elzhass.etml.marker.EtmlElement;
 
 /*
  *
@@ -17,8 +19,6 @@ package kz.parser.etml.testmodels;
  *  * limitations under the License.
  *
  */
-
-import kz.parser.etml.marker.EtmlElement;
 
 public class SubModel {
 

@@ -1,3 +1,10 @@
+package com.github.elzhass.etml.reflection;
+
+import com.github.elzhass.etml.EtmlParseException;
+import org.jsoup.nodes.Document;
+
+import java.lang.reflect.Field;
+
 /*
  *
  *  * Copyright (C) 2020 Suleimenov Yelzhas.
@@ -15,13 +22,6 @@
  *  * limitations under the License.
  *
  */
-
-package kz.parser.etml.reflection;
-
-import kz.parser.etml.EtmlParseException;
-import org.jsoup.nodes.Document;
-
-import java.lang.reflect.Field;
 
 abstract class EtmlBaseParser<T> {
 

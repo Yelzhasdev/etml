@@ -1,3 +1,15 @@
+package com.github.elzhass.etml.reflection;
+
+import com.github.elzhass.etml.EtmlParseException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 /*
  *
  *  * Copyright (C) 2020 Suleimenov Yelzhas.
@@ -15,18 +27,6 @@
  *  * limitations under the License.
  *
  */
-
-package kz.parser.etml.reflection;
-
-import kz.parser.etml.EtmlParseException;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 public final class SelectorValueGenerator {
 

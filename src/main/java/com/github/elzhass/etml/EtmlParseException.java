@@ -1,3 +1,5 @@
+package com.github.elzhass.etml;
+
 /*
  *
  *  * Copyright (C) 2020 Suleimenov Yelzhas.
@@ -15,8 +17,6 @@
  *  * limitations under the License.
  *
  */
-
-package kz.parser.etml;
 
 public class EtmlParseException extends RuntimeException {
 

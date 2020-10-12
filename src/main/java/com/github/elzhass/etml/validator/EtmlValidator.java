@@ -1,4 +1,9 @@
-package kz.parser.etml.validator;
+package com.github.elzhass.etml.validator;
+
+import com.github.elzhass.etml.EtmlParseException;
+import com.github.elzhass.etml.marker.EtmlObject;
+
+import java.lang.annotation.Annotation;
 
 /*
  *
@@ -17,11 +22,6 @@ package kz.parser.etml.validator;
  *  * limitations under the License.
  *
  */
-
-import kz.parser.etml.EtmlParseException;
-import kz.parser.etml.marker.EtmlObject;
-
-import java.lang.annotation.Annotation;
 
 public final class EtmlValidator<T> {
 

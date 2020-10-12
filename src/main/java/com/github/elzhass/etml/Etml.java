@@ -1,3 +1,10 @@
+package com.github.elzhass.etml;
+
+import com.github.elzhass.etml.validator.EtmlValidator;
+import com.github.elzhass.etml.reflection.EtmlParser;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 /*
  *
  *  * Copyright (C) 2020 Suleimenov Yelzhas.
@@ -15,13 +22,6 @@
  *  * limitations under the License.
  *
  */
-
-package kz.parser.etml;
-
-import kz.parser.etml.reflection.EtmlParser;
-import kz.parser.etml.validator.EtmlValidator;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 public final class Etml {
 
