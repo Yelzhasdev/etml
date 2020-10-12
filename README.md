@@ -5,20 +5,7 @@ Etml is a library for parsing HTML to object with one line and a few annotations
 This project is based on Jsoup(https://jsoup.org/).
 
 ## Installation
-1. Add sonatype repo to your pom
-```
-<repositories>
-	<repository>
-		<id>oss-sonatype</id>
-		<name>oss-sonatype</name>
-		<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-		<snapshots>
-			<enabled>true</enabled>
-		</snapshots>
-	</repository>
-</repositories>
-```
-2. Add Dependency to your pom
+1. Add Dependency to your pom
 ```
 <dependency>
 	<groupId>com.github.elzhass</groupId>
@@ -26,7 +13,7 @@ This project is based on Jsoup(https://jsoup.org/).
 	<version>0.1.0</version>
 </dependency>
 ```
-3. Enjoy!
+2. Enjoy!
 
 ## Usage
 
