@@ -8,8 +8,8 @@ This project is based on Jsoup(https://jsoup.org/).
 
 1. Example model should look like this:
 ```java
-import kz.parser.etml.marker.EtmlElement;
-import kz.parser.etml.marker.EtmlObject;
+import EtmlElement;
+import EtmlObject;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ private List<TestModelWithoutBase> attributes;
 ```
 And fields of that SubModel like this:
 ```java 
-import kz.parser.etml.marker.EtmlElement;
+import EtmlElement;
 
 import java.util.List;
 
