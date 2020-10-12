@@ -5,7 +5,8 @@ Etml is a library for parsing HTML to object with one line and a few annotations
 This project is based on Jsoup(https://jsoup.org/).
 
 ## Installation
-1. Add Dependency to your pom
+1. Add Dependency to your pom:
+
 ```xml
 <dependency>
 	<groupId>com.github.elzhass</groupId>
