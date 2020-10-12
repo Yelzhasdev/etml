@@ -14,7 +14,6 @@ This project is based on Jsoup(https://jsoup.org/).
 	<version>0.1.1</version>
 </dependency>
 ```
-2. Enjoy!
 
 ## Usage
 
