@@ -39,9 +39,6 @@ public final class Etml {
         }
         EtmlValidator<T> validator = new EtmlValidator<>(classOf);
         validator.validate();
-        if (classOf == null) {
-            throw new EtmlParseException("Object can't be null.");
-        }
         EtmlParser<T> parser = new EtmlParser<>();
         T target = parser.parse(classOf, document);
         return target;
