@@ -63,7 +63,7 @@ public final class SelectorValueGenerator {
     public static <T> T extractValue(Element element, Class<T> type) {
         T valueToReturn = null;
         if (element == null) {
-            throw new EtmlParseException("Element is empty! Selector is wrong or page is not valid.");
+            return null;
         }
         String valueOfNode = element.text();
         if (type.isAssignableFrom(String.class)) {
