@@ -10,7 +10,7 @@ This project is based on Jsoup(https://jsoup.org/).
 <dependency>
 	<groupId>com.github.elzhass</groupId>
 	<artifactId>etml</artifactId>
-	<version>0.1.0</version>
+	<version>0.1.1</version>
 </dependency>
 ```
 2. Enjoy!
