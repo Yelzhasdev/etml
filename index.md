@@ -6,7 +6,7 @@ This project is based on Jsoup(https://jsoup.org/).
 
 ## Installation
 1. Add Dependency to your pom
-```
+```xml
 <dependency>
 	<groupId>com.github.elzhass</groupId>
 	<artifactId>etml</artifactId>
