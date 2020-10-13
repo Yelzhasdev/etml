@@ -1,7 +1,7 @@
-package com.github.elzhass.etml;
+package com.github.yelzhasdev.etml;
 
-import com.github.elzhass.etml.validator.EtmlValidator;
-import com.github.elzhass.etml.reflection.EtmlParser;
+import com.github.yelzhasdev.etml.validator.EtmlValidator;
+import com.github.yelzhasdev.etml.reflection.EtmlParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 

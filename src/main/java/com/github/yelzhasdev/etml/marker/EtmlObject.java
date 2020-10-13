@@ -1,9 +1,9 @@
-package com.github.elzhass.etml.reflection;
+package com.github.yelzhasdev.etml.marker;
 
-import com.github.elzhass.etml.EtmlParseException;
-import org.jsoup.nodes.Document;
-
-import java.lang.reflect.Field;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /*
  *
@@ -23,16 +23,10 @@ import java.lang.reflect.Field;
  *
  */
 
-abstract class EtmlBaseParser<T> {
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface EtmlObject {
 
-    abstract public T parse(Class<T> target, Document document);
+    public String selector() default "";
 
-    static void setField(Object obj, Object value, Field field) throws EtmlParseException {
-        try {
-            field.setAccessible(true);
-            field.set(obj, value);
-        } catch (IllegalAccessException e) {
-            throw new EtmlParseException(e);
-        }
-    }
 }

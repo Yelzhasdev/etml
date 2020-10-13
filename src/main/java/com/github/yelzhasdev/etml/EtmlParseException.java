@@ -1,9 +1,4 @@
-package com.github.elzhass.etml.marker;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+package com.github.yelzhasdev.etml;
 
 /*
  *
@@ -23,10 +18,17 @@ import java.lang.annotation.Target;
  *
  */
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface EtmlElement {
+public class EtmlParseException extends RuntimeException {
 
-    public String selector() default "";
+    public EtmlParseException(String message) {
+        super(message);
+    }
 
+    public EtmlParseException(String message, Throwable throwable) {
+        super(message, throwable);
+    }
+
+    public EtmlParseException(Throwable throwable) {
+        super(throwable);
+    }
 }

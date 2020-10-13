@@ -1,8 +1,6 @@
-package com.github.elzhass.etml.testmodels;
+package com.github.yelzhasdev.etml.testmodels;
 
-import com.github.elzhass.etml.marker.EtmlElement;
-
-import java.util.List;
+import com.github.yelzhasdev.etml.marker.EtmlElement;
 
 /*
  *
@@ -22,25 +20,12 @@ import java.util.List;
  *
  */
 
-public class TestModelWithoutBase {
-    @EtmlElement(selector = "li")
-    private String test;
+public class SubModel {
 
-    @EtmlElement(selector = "h1")
-    private int numb;
+    @EtmlElement(selector = "h2")
+    private Boolean value;
 
-    @EtmlElement(selector = "ol")
-    private List<String> testText;
-
-    public List<String> getTestText() {
-        return testText;
-    }
-
-    public String getTest() {
-        return test;
-    }
-
-    public int getNumb() {
-        return numb;
+    public Boolean getValue() {
+        return value;
     }
 }

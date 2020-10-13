@@ -1,4 +1,4 @@
-package com.github.elzhass.etml.marker;
+package com.github.yelzhasdev.etml.marker;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -24,8 +24,8 @@ import java.lang.annotation.Target;
  */
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface EtmlObject {
+@Target(ElementType.FIELD)
+public @interface EtmlElement {
 
     public String selector() default "";
 

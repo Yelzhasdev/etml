@@ -1,6 +1,6 @@
-package com.github.elzhass.etml.reflection;
+package com.github.yelzhasdev.etml.reflection;
 
-import com.github.elzhass.etml.EtmlParseException;
+import com.github.yelzhasdev.etml.EtmlParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
