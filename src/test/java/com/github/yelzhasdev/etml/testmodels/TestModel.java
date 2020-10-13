@@ -1,7 +1,7 @@
-package com.github.elzhass.etml.testmodels;
+package com.github.yelzhasdev.etml.testmodels;
 
-import com.github.elzhass.etml.marker.EtmlElement;
-import com.github.elzhass.etml.marker.EtmlObject;
+import com.github.yelzhasdev.etml.marker.EtmlElement;
+import com.github.yelzhasdev.etml.marker.EtmlObject;
 
 import java.util.List;
 

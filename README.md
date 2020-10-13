@@ -8,7 +8,7 @@ This project is based on Jsoup(https://jsoup.org/).
 1. Add Dependency to your pom
 ```
 <dependency>
-	<groupId>com.github.elzhass</groupId>
+	<groupId>com.github.yelzhasdev</groupId>
 	<artifactId>etml</artifactId>
 	<version>0.1.1</version>
 </dependency>
@@ -19,8 +19,8 @@ This project is based on Jsoup(https://jsoup.org/).
 
 Example model should look like this:
 ```java
-import EtmlElement;
-import EtmlObject;
+import com.github.yelzhasdev.testmodels.EtmlElement;
+import com.github.yelzhasdev.testmodels.EtmlObject;
 
 import java.util.List;
 
@@ -55,7 +55,7 @@ private List<TestModelWithoutBase> attributes;
 ```
 And fields of that SubModel like this:
 ```java 
-import EtmlElement;
+import com.github.yelzhasdev.testmodels.EtmlElement;
 
 import java.util.List;
 
@@ -111,4 +111,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## License
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0):
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)

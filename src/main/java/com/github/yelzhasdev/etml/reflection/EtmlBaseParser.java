@@ -1,4 +1,9 @@
-package com.github.elzhass.etml;
+package com.github.yelzhasdev.etml.reflection;
+
+import com.github.yelzhasdev.etml.EtmlParseException;
+import org.jsoup.nodes.Document;
+
+import java.lang.reflect.Field;
 
 /*
  *
@@ -18,17 +23,16 @@ package com.github.elzhass.etml;
  *
  */
 
-public class EtmlParseException extends RuntimeException {
+abstract class EtmlBaseParser<T> {
 
-    public EtmlParseException(String message) {
-        super(message);
-    }
+    abstract public T parse(Class<T> target, Document document);
 
-    public EtmlParseException(String message, Throwable throwable) {
-        super(message, throwable);
-    }
-
-    public EtmlParseException(Throwable throwable) {
-        super(throwable);
+    static void setField(Object obj, Object value, Field field) throws EtmlParseException {
+        try {
+            field.setAccessible(true);
+            field.set(obj, value);
+        } catch (IllegalAccessException e) {
+            throw new EtmlParseException(e);
+        }
     }
 }

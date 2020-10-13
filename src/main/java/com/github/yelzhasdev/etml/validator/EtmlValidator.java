@@ -1,7 +1,7 @@
-package com.github.elzhass.etml.validator;
+package com.github.yelzhasdev.etml.validator;
 
-import com.github.elzhass.etml.EtmlParseException;
-import com.github.elzhass.etml.marker.EtmlObject;
+import com.github.yelzhasdev.etml.EtmlParseException;
+import com.github.yelzhasdev.etml.marker.EtmlObject;
 
 import java.lang.annotation.Annotation;
 

@@ -1,7 +1,7 @@
-package com.github.elzhass.etml;
+package com.github.yelzhasdev.etml;
 
-import com.github.elzhass.etml.testmodels.TestModelWithoutBase;
-import com.github.elzhass.etml.testmodels.TestModel;
+import com.github.yelzhasdev.etml.testmodels.TestModelWithoutBase;
+import com.github.yelzhasdev.etml.testmodels.TestModel;
 import org.jsoup.Jsoup;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

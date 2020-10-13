@@ -1,7 +1,7 @@
-package com.github.elzhass.etml.reflection;
+package com.github.yelzhasdev.etml.reflection;
 
-import com.github.elzhass.etml.EtmlParseException;
-import com.github.elzhass.etml.marker.EtmlElement;
+import com.github.yelzhasdev.etml.EtmlParseException;
+import com.github.yelzhasdev.etml.marker.EtmlElement;
 import org.jsoup.nodes.Document;
 
 import java.lang.annotation.Annotation;
