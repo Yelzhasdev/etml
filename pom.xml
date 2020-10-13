@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.elzhass</groupId>
+    <groupId>com.github.yelzhasdev</groupId>
     <artifactId>etml</artifactId>
     <version>0.1.1</version>
 
     <name>etml</name>
     <description>Etml is a library for parsing HTML to object</description>
-    <url>https://github.com/ElzhasS/etml</url>
+    <url>https://github.com/yelzhasdev/etml</url>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -24,16 +24,16 @@
             <id>azazello</id>
             <name>Suleimenov Yelzhas</name>
             <email>elzhas.suleimenov@gmail.com</email>
-            <url>https://github.com/ElzhasS</url>
+            <url>https://github.com/yelzhasdev</url>
             <roles>
                 <role>developer</role>
             </roles>
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git://github.com/ElzhasS/etml.git</connection>
-        <developerConnection>scm:git:ssh://github.com/ElzhasS/etml.git</developerConnection>
-        <url>https://github.com/ElzhasS/etml/tree/main</url>
+        <connection>scm:git:git://github.com/yelzhasdev/etml.git</connection>
+        <developerConnection>scm:git:ssh://github.com/yelzhasdev/etml.git</developerConnection>
+        <url>https://github.com/yelzhasdev/etml/tree/main</url>
     </scm>
 
     <distributionManagement>
