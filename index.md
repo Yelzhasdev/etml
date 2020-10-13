@@ -9,7 +9,7 @@ This project is based on Jsoup(https://jsoup.org/).
 
 ```xml
 <dependency>
-	<groupId>com.github.elzhass</groupId>
+	<groupId>com.github.yelzhasdev</groupId>
 	<artifactId>etml</artifactId>
 	<version>0.1.1</version>
 </dependency>
@@ -19,8 +19,8 @@ This project is based on Jsoup(https://jsoup.org/).
 
 Example model should look like this:
 ```java
-import com.github.elzhass.etml.marker.EtmlElement;
-import com.github.elzhass.etml.marker.EtmlObject;
+import com.github.yelzhasdev.etml.marker.EtmlElement;
+import com.github.yelzhasdev.etml.marker.EtmlObject;
 
 import java.util.List;
 
@@ -55,7 +55,7 @@ private List<TestModelWithoutBase> attributes;
 ```
 And fields of that SubModel like this:
 ```java 
-import com.github.elzhass.etml.marker.EtmlElement;
+import com.github.yelzhasdev.etml.marker.EtmlElement;
 
 import java.util.List;
 
