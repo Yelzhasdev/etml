@@ -19,8 +19,8 @@ This project is based on Jsoup(https://jsoup.org/).
 
 Example model should look like this:
 ```java
-import com.github.yelzhasdev.testmodels.EtmlElement;
-import com.github.yelzhasdev.testmodels.EtmlObject;
+import com.github.yelzhasdev.marker.EtmlElement;
+import com.github.yelzhasdev.marker.EtmlObject;
 
 import java.util.List;
 
@@ -55,7 +55,7 @@ private List<TestModelWithoutBase> attributes;
 ```
 And fields of that SubModel like this:
 ```java 
-import com.github.yelzhasdev.testmodels.EtmlElement;
+import com.github.yelzhasdev.marker.EtmlElement;
 
 import java.util.List;
 
