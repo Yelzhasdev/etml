@@ -53,16 +53,22 @@ public class EtmlParser<T> extends EtmlBaseParser<T> {
                 if (etmlFieldAnnon.selector().isEmpty()) {
                     throw new EtmlParseException("Field selector must not be empty.");
                 }
-                Type type = fieldToProcess.getGenericType();
-                if (type instanceof ParameterizedType) {
-                    ParameterizedType pType = (ParameterizedType) type;
-                    if (fieldToProcess.getType().isAssignableFrom(List.class)) {
-                        List<?> targetList = SelectorValueGenerator.getValues((Class<T>) pType.getActualTypeArguments()[0], etmlFieldAnnon.selector(), document);
-                        setField(target, targetList, fieldToProcess);
+                try {
+                    Type type = fieldToProcess.getGenericType();
+                    if (type instanceof ParameterizedType) {
+                        ParameterizedType pType = (ParameterizedType) type;
+                        if (fieldToProcess.getType().isAssignableFrom(List.class)) {
+                            List<?> targetList = SelectorValueGenerator.getValues((Class<T>) pType.getActualTypeArguments()[0], etmlFieldAnnon.selector(), document);
+                            setField(target, targetList, fieldToProcess);
+                        }
+                    } else {
+                        Object value = SelectorValueGenerator.getValue(fieldToProcess.getType(), etmlFieldAnnon.selector(), document);
+                        setField(target, value, fieldToProcess);
                     }
-                } else {
-                    Object value = SelectorValueGenerator.getValue(fieldToProcess.getType(), etmlFieldAnnon.selector(), document);
-                    setField(target, value, fieldToProcess);
+                } catch (EtmlParseException etmlEx) {
+                    if (etmlFieldAnnon.mandatory()) {
+                        throw etmlEx;
+                    }
                 }
             }
         }

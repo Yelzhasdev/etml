@@ -30,7 +30,7 @@ public class TestEtml {
     private static Etml etml;
     private static final String HTML = "<html>\n" +
             "<head>\n" +
-            "<title>Enter a title, displayed at the top of the window.</title>\n" +
+            "<title>123</title>\n" +
             "</head>\n" +
             "<!-- The information between the BODY and /BODY tags is displayed.-->\n" +
             "<body>\n" +
@@ -62,6 +62,12 @@ public class TestEtml {
             "</body>\n" +
             "</html>";
 
+    private static final String HTML_MANDATORY_EXCEPTION = "<html>\n" +
+            "<head>\n" +
+            "<title>Enter a title, displayed at the top of the window.</title>\n" +
+            "</head>\n" +
+            "</html>";
+
     @BeforeAll
     public static void setUp() {
         etml = new Etml();
@@ -71,6 +77,13 @@ public class TestEtml {
     public void testNoRequiredAnnotation() {
         Assertions.assertThrows(EtmlParseException.class, () -> {
             etml.fromHtml(HTML, TestModelWithoutBase.class);
+        });
+    }
+
+    @Test
+    public void testProblemWithMandatoryValue() {
+        Assertions.assertThrows(EtmlParseException.class, () -> {
+            etml.fromHtml(HTML_MANDATORY_EXCEPTION, TestModelWithoutBase.class);
         });
     }
 

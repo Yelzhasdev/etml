@@ -26,8 +26,8 @@ import java.util.List;
 @EtmlObject
 public class TestModel{
 
-    @EtmlElement(selector = "head > title")
-    private String name;
+    @EtmlElement(selector = "head > title", mandatory = true)
+    private long name;
 
     @EtmlElement(selector = "body > h1")
     private Long age;
@@ -56,11 +56,11 @@ public class TestModel{
         return elements;
     }
 
-    public String getName() {
+    public long getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(long name) {
         this.name = name;
     }
 

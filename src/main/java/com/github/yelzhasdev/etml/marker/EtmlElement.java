@@ -29,4 +29,6 @@ public @interface EtmlElement {
 
     public String selector() default "";
 
+    public boolean mandatory() default false;
+
 }
