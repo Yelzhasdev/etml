@@ -1,9 +1,4 @@
-package com.github.yelzhasdev.etml.marker;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+package com.github.yelzhasdev.etml.testmodels;
 
 /*
  *
@@ -23,14 +18,20 @@ import java.lang.annotation.Target;
  *
  */
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface EtmlElement {
+import com.github.yelzhasdev.etml.marker.EtmlElement;
+import com.github.yelzhasdev.etml.marker.EtmlObject;
 
-    public String selector() default "";
+@EtmlObject
+public class TestAttributeModel {
 
-    public boolean mandatory() default false;
+    @EtmlElement(selector = "div", attributeValue = "test", mandatory = true)
+    private String attribute;
 
-    public String attributeValue() default "";
+    public String getAttribute() {
+        return attribute;
+    }
 
+    public void setAttribute(String attribute) {
+        this.attribute = attribute;
+    }
 }

@@ -1,5 +1,6 @@
 package com.github.yelzhasdev.etml;
 
+import com.github.yelzhasdev.etml.testmodels.TestAttributeModel;
 import com.github.yelzhasdev.etml.testmodels.TestModelWithoutBase;
 import com.github.yelzhasdev.etml.testmodels.TestModel;
 import org.jsoup.Jsoup;
@@ -28,13 +29,18 @@ import org.junit.jupiter.api.Test;
 public class TestEtml {
 
     private static Etml etml;
+
+    private static final Long H1_VALUE = 999999999L;
+
+    private static final String TEST_ATTRIBUTE = "Hello my friend.";
+
     private static final String HTML = "<html>\n" +
             "<head>\n" +
             "<title>123</title>\n" +
             "</head>\n" +
             "<!-- The information between the BODY and /BODY tags is displayed.-->\n" +
             "<body>\n" +
-            "<h1>999999999</h1>\n" +
+            "<h1>"+ H1_VALUE +"</h1>\n" +
             "<h2> FALSE </h2>\n" +
             "<p>Be <b>bold</b> in stating your key points. Put them in a list: </p>\n" +
             "<ul>\n" +
@@ -68,6 +74,13 @@ public class TestEtml {
             "</head>\n" +
             "</html>";
 
+    private static final String HTML_ATTRIBUTE_TEST = "<html>\n" +
+            "<head>\n" +
+            "<div test=\""+ TEST_ATTRIBUTE +"\">Enter a title, displayed at the top of the window.</title>\n" +
+            "</head>\n" +
+            "</html>";
+
+
     @BeforeAll
     public static void setUp() {
         etml = new Etml();
@@ -83,19 +96,27 @@ public class TestEtml {
     @Test
     public void testProblemWithMandatoryValue() {
         Assertions.assertThrows(EtmlParseException.class, () -> {
-            etml.fromHtml(HTML_MANDATORY_EXCEPTION, TestModelWithoutBase.class);
+            etml.fromHtml(HTML_MANDATORY_EXCEPTION, TestModel.class);
         });
     }
 
     @Test
     public void testSuccessPlainHTML() {
         TestModel model = etml.fromHtml(HTML, TestModel.class);
+        Assertions.assertEquals(model.getAge(), H1_VALUE);
+    }
+
+    @Test
+    public void testAttributes() {
+        TestAttributeModel model = etml.fromHtml(HTML_ATTRIBUTE_TEST, TestAttributeModel.class);
+        Assertions.assertEquals(model.getAttribute(),TEST_ATTRIBUTE);
     }
 
     @Test
     public void testSuccessJsoupDoc() {
         org.jsoup.nodes.Document doc = Jsoup.parse(HTML);
         TestModel model = etml.fromHtml(doc, TestModel.class);
+        Assertions.assertEquals(model.getAge(), H1_VALUE);
     }
 
 }

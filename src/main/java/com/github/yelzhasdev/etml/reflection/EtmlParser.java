@@ -49,8 +49,8 @@ public class EtmlParser<T> extends EtmlBaseParser<T> {
     private void fieldProcessor(Field fieldToProcess, T target, Document document) {
         for (Annotation fieldAn : fieldToProcess.getDeclaredAnnotations()) {
             if (fieldAn instanceof EtmlElement) {
-                EtmlElement etmlFieldAnnon = (EtmlElement) fieldAn;
-                if (etmlFieldAnnon.selector().isEmpty()) {
+                EtmlElement etmlFieldAnnot = (EtmlElement) fieldAn;
+                if (etmlFieldAnnot.selector().isEmpty()) {
                     throw new EtmlParseException("Field selector must not be empty.");
                 }
                 try {
@@ -58,15 +58,15 @@ public class EtmlParser<T> extends EtmlBaseParser<T> {
                     if (type instanceof ParameterizedType) {
                         ParameterizedType pType = (ParameterizedType) type;
                         if (fieldToProcess.getType().isAssignableFrom(List.class)) {
-                            List<?> targetList = SelectorValueGenerator.getValues((Class<T>) pType.getActualTypeArguments()[0], etmlFieldAnnon.selector(), document);
+                            List<?> targetList = SelectorValueGenerator.getValues((Class<T>) pType.getActualTypeArguments()[0], etmlFieldAnnot, document);
                             setField(target, targetList, fieldToProcess);
                         }
                     } else {
-                        Object value = SelectorValueGenerator.getValue(fieldToProcess.getType(), etmlFieldAnnon.selector(), document);
+                        Object value = SelectorValueGenerator.getValue(fieldToProcess.getType(), etmlFieldAnnot, document);
                         setField(target, value, fieldToProcess);
                     }
                 } catch (EtmlParseException etmlEx) {
-                    if (etmlFieldAnnon.mandatory()) {
+                    if (etmlFieldAnnot.mandatory()) {
                         throw etmlEx;
                     }
                 }
